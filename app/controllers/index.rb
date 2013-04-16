@@ -1,14 +1,21 @@
+
+
 get '/' do
   erb :index
 end
 
-get '/:username' do
-  
-  @user = User.find_or_create_by_username(params[:username])
+get '/shit' do
+  @user = User.find_or_create_by_username(session[:username])
   if @user.tweets.empty? || @user.tweets_stale?
     @user.fetch_tweets!
   end
-
-
-  erb(:tweets)
+  sleep 5
+ erb(:tweets, :layout => false)
 end
+
+get '/:username' do
+  session[:username] = params[:username]
+  erb(:index)
+end
+
+

@@ -2,7 +2,11 @@ This user has <%= @user.tweets.count %> tweets saved!
 <ul>
 <% @user.tweets.reverse[0..9].each_with_index do |tweet, index|%>
 <li>
-<%= "#{index + 1}. #{tweet.text}"  %>
+<%= tweet.text  %>
 </li> 
 <% end %>
 </ul>
+
+
+
+
